@@ -1,7 +1,7 @@
 <picture>
  <source media="(prefers-color-scheme: dark)" srcset="images/tbug_logo/T-BUG_Logo-4.png">
  <source media="(prefers-color-scheme: light)" srcset="images/tbug_logo/T-BUG_Logo-3.png">
- <img alt="T-BUG Logo" src="images/tbug_logo/T-BUG_Logo-3.png">
+ <img alt="T-BUG Logo" src="images/tbug_logo/T-BUG_Logo-3.png" width="220">
 </picture>
 
 # Table of Contents

@@ -46,7 +46,9 @@
 
 **T-BUG (Tiny-Bad USB Gadget)** is an open-source penetration testing device that emulates a **HID (Human Interface Device)**—such as a keyboard or mouse—to automatically execute scripts, commands, or payloads on the host computer it’s plugged into.
 It is designed for ethical hackers, programmers, electronics hobbyists, and even complete beginners who want a compact, programmable USB tool. Whether you're using it for something as simple as simulating mouse movements or as advanced as executing a sequence of commands to perform a specific task, T-BUG is adaptable to your use case.
+
 At its core, T-BUG is powered by the **Raspberry Pi RP2040 microcontroller**, paired with **2MB of onboard flash storage**—sufficient for most automation or payloads.
+
 T-BUG features a **built-in RGB LED** to indicate the current execution stage of the active script, and a **capacitive touch sensor/button** whose function can vary depending on the script.
 
 We at **Nefarious Engineering** provide several plug-and-play scripts for quick use, but if you have experience with embedded systems or even just basic Python programming, you can easily write your own scripts and upload them to T-BUG.
@@ -57,7 +59,20 @@ You can find source code, sample scripts, and development resources for T-BUG on
 
 # Legal Disclaimer
 
-T-BUG is intended for ethical and educational use only. Unauthorized use of this device on systems you do not own or have permission to test is illegal.
+T-BUG is an open-source hardware and software project developed for educational, ethical hacking, research, and automation purposes only.
+
+**_Any use of this device or its associated scripts on systems that you do not own or for which you do not have explicit permission to test, is strictly prohibited and may be illegal under local, national, or international laws._**
+
+The developers, contributors, and maintainers of this project **do not condone, support, or accept responsibility** for any malicious use or unauthorized use of this tool/device.
+By using this project, you agree that:
+
+- You are solely responsible for how you use the hardware and software provided.
+
+- You will not use it for unauthorized access, data theft, system compromise, or other unlawful activities.
+
+- The creators of this project cannot be held liable for any damage, misuse, or legal consequences arising from its use.
+
+This project is provided **as-is**, without warranty or guarantee. Use responsibly and always follow **legal** and **ethical guidelines**.
 
 # Getting Started
 
@@ -442,7 +457,7 @@ This section is intended to help beginners and intermediate users understand the
   Learn how to install, write, and run Python code on microcontrollers.
 - [CircuitPython Essentials Guide](https://learn.adafruit.com/circuitpython-essentials)
   A practical set of tutorials covering built-in libraries, digital Input/Output, PWM, analog input, and more.
-- 💡 Python Programming for Beginners (W3Schools)
+- 💡 [Python Programming for Beginners (W3Schools)](https://www.w3schools.com/python/)
   Helps non-coders understand Python basics used in scripting.
 
 ## USB HID Emulation (Keyboard/Mouse Automation)

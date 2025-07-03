@@ -1,3 +1,46 @@
+# Table of Contents
+
+- [About T-BUG](#about-t-bug)
+- [Legal Disclaimer](#legal-disclaimer)
+- [Getting Started](#getting-started)
+  - [How to Get T-BUG](#how-to-get-t-bug)
+  - [Using T-BUG Out of the Box](#using-t-bug-out-of-the-box)
+  - [Basic Controls](#basic-controls)
+  - [Want to Try a Different Script?](#want-to-try-a-different-script)
+  - [Important Notes for New Users](#important-notes-for-new-users)
+- [Script Descriptions](#script-descriptions)
+  - [User Activity Emulation Script](#user-activity-emulation-script)
+    - [Script Sequence Overview](#script-sequence-overview)
+- [Development](#development)
+  - [Required Files](#required-files)
+  - [Entering Bootloader Mode](#entering-bootloader-mode)
+  - [Formatting Flash](#formatting-flash-optional-but-recommended)
+  - [Installing CircuitPython Firmware](#installing-circuitpython-firmware)
+  - [Setting Up Required Libraries](#setting-up-required-libraries)
+  - [Writing and Uploading Your Script](#writing-and-uploading-your-script)
+    - [Using Prebuilt Scripts (for Non-Programmers)](#using-prebuilt-scripts-for-non-programmers)
+    - [Using Custom Scripts (for Programmers)](#using-custom-scripts-for-programmers)
+  - [Pin Connections](#pin-connections)
+  - [Developer Notes](#developer-notes)
+- [3D Printed Case](#3d-printed-case)
+- [Hardware Assembly](#hardware-assembly)
+  - [Required Hardware Components](#required-hardware-components)
+  - [Required Soldering Tools](#required-soldering-tools)
+  - [Soldering & Assembly Instructions](#soldering--assembly-instructions)
+  - [Coming Soon: Custom T-BUG PCB](#coming-soon-custom-t-bug-pcb)
+- [FAQ – Frequently Asked Questions](#faq--frequently-asked-questions)
+- [Learning Resources](#learning-resources)
+  - [CircuitPython & Python Basics](#circuitpython--python-basics)
+  - [USB HID Emulation (Keyboard/Mouse Automation)](#usb-hid-emulation-keyboardmouse-automation)
+  - [Working with the RP2040 MCU](#working-with-the-rp2040-mcu)
+  - [Working with Capacitive Touch Sensor (TTP223)](#working-with-capacitive-touch-sensor-ttp223)
+  - [Adafruit Neopixel RGB LED Control](#adafruit-neopixel-rgb-led-control)
+- [Contributing](#contributing)
+  - [What You Can Contribute](#what-you-can-contribute)
+  - [How to Contribute](#how-to-contribute)
+  - [Contribution Guidelines](#contribution-guidelines)
+  - [Legal](#legal)
+
 # About T-BUG
 
 **T-BUG (Tiny-Bad USB Gadget)** is an open-source penetration testing device that emulates a **HID (Human Interface Device)**—such as a keyboard or mouse—to automatically execute scripts, commands, or payloads on the host computer it’s plugged into.
@@ -11,7 +54,7 @@ The device runs on CircuitPython, a fork of MicroPython developed by Adafruit In
 
 You can find source code, sample scripts, and development resources for T-BUG on our [GitHub page](https://github.com/Nefarious-Engineering/tbug)
 
-## Legal Disclaimer
+# Legal Disclaimer
 
 T-BUG is intended for ethical and educational use only. Unauthorized use of this device on systems you do not own or have permission to test is illegal.
 
@@ -33,7 +76,7 @@ You can get T-BUG in two ways:
 
 When you plug in a pre-assembled T-BUG, it will automatically begin executing the default script, such as:
 
-> User Activity Emulation – prevents the system from sleeping or locking or going idle by simulating user input.
+> User Activity Emulation – prevents the system from sleeping, locking, or going idle by simulating human interaction.
 
 ## Basic Controls
 
@@ -53,9 +96,10 @@ To change the script (no coding required):
 
 ## Important Notes for New Users
 
-- Do not unplug T-BUG while it's running a script to avoid unexpected behavior.
-  > [!WARNING]
-  > Make sure to only use T-BUG on systems you own or have permission to test.
+Do not unplug T-BUG while it's running a script to avoid unexpected behavior.
+
+> [!WARNING]
+> Make sure to only use T-BUG on systems you own or have permission to test.
 
 # Script Descriptions
 
@@ -88,8 +132,10 @@ When the user enables the script:
    The mouse pointer is moved to random screen coordinates, then the process repeats.
 4. **Keystroke Injection Stage:**
    Periodically, the entire mouse emulation sequence is paused, and either a Shift keystroke or Caps Lock keystroke is sent to the host machine.
-   > [!NOTE]
-   > The script tracks the last key sent, and alternates between Shift and Caps Lock to avoid repetition.
+
+> [!NOTE]
+> The script tracks the last key sent, and alternates between Shift and Caps Lock to avoid repetition.
+
 5. **Resume Loop:** After the keystroke is sent, the script resumes its normal operation starting from the mouse movement stage.
 
 > [!NOTE]
@@ -108,7 +154,7 @@ Download the following files from the [T-BUG GitHub repository](https://github.c
 
 1. flash_nuke.uf2 – Formats T-BUG’s internal flash storage.
 
-2. adafruit-circuitpython-waveshare_rp2040_zero-en_US-9.2.8.uf2 or new available – CircuitPython firmware for the RP2040 Zero board.
+2. adafruit-circuitpython-waveshare_rp2040_zero-en_US-9.2.8.uf2 or new available – CircuitPython firmware for the RP2040-Zero board.
 
 3. adafruit_hid library – Required for USB HID emulation (keyboard/mouse input).
 
@@ -158,12 +204,12 @@ To use a different script:
 
 3. Copy both the files to the root of the CIRCUITPY drive (replace the existing main.py if any).
 
-   > [!NOTE]
-   > Copying boot.py into the CIRCUITPY drive will result in hiding the CIRCUITPY drive the next time T-BUG boots, so if you are simply trying different available T-BUG scripts then do not copy the boot.py file inside the T-BUG flash otherwise you have to perform the above mentioned steps again in order to regain access to the CIRCUITPY drive. Once you have finalized a T-BUG script then you can safely copy the boot.py file into CIRCUITPY drive.
+> [!NOTE]
+> Copying boot.py into the CIRCUITPY drive will result in hiding the CIRCUITPY drive the next time T-BUG boots, so if you are simply trying different available T-BUG scripts then do not copy the boot.py file inside the T-BUG flash otherwise you have to perform the above mentioned steps again in order to regain access to the CIRCUITPY drive. Once you have finalized a T-BUG script then you can safely copy the boot.py file into CIRCUITPY drive.
 
 4. Replug T-BUG. The new script will execute automatically.
 
-This allows anyone to change T-BUG's behavior without needing to write or edit code.
+This allows anyone to customize T-BUG's behavior by simply replacing a file—no coding required.
 
 ### Using Custom Scripts (for Programmers)
 
@@ -174,6 +220,14 @@ This allows anyone to change T-BUG's behavior without needing to write or edit c
    - 📘 [Adafruit CircuitPython Documentation](https://docs.circuitpython.org/en/latest/README.html)
 
    - 💡 Example scripts on the [T-BUG GitHub repository](https://github.com/Nefarious-Engineering/tbug)
+
+3. For editing main.py, we recommend using:
+
+   - [Thonny](https://thonny.org/) – beginner-friendly and CircuitPython-compatible
+
+   - [Mu Editor](https://codewith.mu/) - recommended by Adafruit for CircuitPython
+
+   - [VS Code](https://code.visualstudio.com/) with [CircuitPython extension](https://learn.adafruit.com/using-the-circuitpython-extension-for-visual-studio-code/install-the-circuitpython-extension-for-vs-code)
 
 ## Pin Connections
 
@@ -219,16 +273,19 @@ This section explains how to assemble your T-BUG device, including the required 
 
 2. TTP223 Capacitive Touch Sensor module
 
-3. Thin enameled copper wires – 3 pieces (for signal and power connections)
+3. 22pF, 33pF, or 47pF MLCC Capacitor (SMD 0805)
 
-4. Double-sided tape – to mount the touch sensor inside the case
+4. Thin enameled copper wires – 3 pieces (for signal and power connections)
 
-5. 3D Printed Case (recommended) or any alternative method to secure the electronics
+5. Double-sided tape – to mount the touch sensor inside the case
+
+6. 3D Printed Case (recommended) or any alternative method to secure the electronics
 
 ## Required Soldering Tools
 
 - Soldering Iron with Fine Tip
 - Solder Wire (leaded or lead-free, as per user preference)
+- Fine Tip Tweezers (for handling SMD components)
 - Desoldering Pump (optional, useful for correcting mistakes)
 - Soldering Mat (optional, but recommended for safety and organization)
 
@@ -244,7 +301,12 @@ This section explains how to assemble your T-BUG device, including the required 
 
    - Remove the enamel coating from both ends using a soldering iron or fine abrasive tool.
 
-2. Solder Wires to Touch Sensor
+2. TTP223 Touch Sensor Sensitivity calibration
+
+   - Solder a 22pF, 33pF, or 47pF MLCC capacitor (SMD 0805) onto the sensitivity adjustment pads of the TTP223 module as shown in the image.
+     > This capacitor reduces the touch sensor's sensitivity, helping prevent false triggers by limiting activation to direct contact with the sensor PCB.
+
+3. Solder Wires to Touch Sensor
 
    - Solder the wires to the through-hole pads of the TTP223 touch sensor:
      | TTP223 Pins |
@@ -253,7 +315,7 @@ This section explains how to assemble your T-BUG device, including the required 
      | I/O |
      | GND |
 
-3. Solder Wires to RP2040-Zero Board
+4. Solder Wires to RP2040-Zero Board
 
    - Pass all three wires through the RGB LED hole in the top case. This allows correct routing to the touch sensor, which will be mounted on the top half of the case.
 
@@ -264,11 +326,11 @@ This section explains how to assemble your T-BUG device, including the required 
      | I/O | GPIO15 |
      | GND | GND |
 
-4. Mount the Touch Sensor
+5. Mount the Touch Sensor
 
    - Secure the TTP223 module to the top half of the case (over the USB Type-C Port shell) using a piece of double-sided tape.
 
-5. Final Case Assembly
+6. Final Case Assembly
 
    - Place the RP2040-Zero board into the bottom half of the 3D printed case.
    - Carefully snap the top and bottom halves together, ensuring:
@@ -282,3 +344,180 @@ The current design uses a Waveshare RP2040-Zero board and a separate TTP223 capa
 - This PCB will integrate the RP2040 microcontroller and touch sensor on a single board.
 
 - Once finalized, the schematics, PCB files, and Gerbers will be made available on the [T-BUG GitHub repository](https://github.com/Nefarious-Engineering/tbug).
+
+# FAQ – Frequently Asked Questions
+
+<details open>
+<summary>1. What is T-BUG used for?</summary>
+T-BUG is a compact, open-source USB device that emulates a keyboard or mouse to automate tasks, execute payloads, or simulate user activity on a host computer. It is designed for ethical hacking, automation, testing, and learning embedded systems.
+</details>
+
+<details>
+<summary>2. Is T-BUG legal to use?</summary>
+Yes—if used ethically. T-BUG is intended strictly for educational, ethical hacking, and personal automation purposes. Do not use it on devices you don’t own or without explicit permission. Unauthorized use can be illegal and subject to legal consequences.
+</details>
+
+<details>
+<summary>3. I plugged in my T-BUG but nothing is happening. Is it broken?</summary>
+No. The T-BUG may be:
+
+- In Idle Mode (waiting for touch input),
+- Running a script with delayed output, or
+- Missing a valid main.py file.
+  > Check the RGB LED indicator for status and ensure the main.py file is correctly uploaded to the CIRCUITPY drive.
+
+</details>
+
+<details>
+<summary>4. How do I upload a new script to T-BUG?</summary>
+You must:
+
+1. Put the device into **bootloader mode** (refer to [Development section](#development)).
+
+2. Format or reflash CircuitPython (if needed).
+
+3. Copy your desired main.py script to the CIRCUITPY drive.
+
+> For non-programmers, prebuilt scripts are available in the T-BUG GitHub Repository.
+
+</details>
+
+<details>
+<summary>5. My CIRCUITPY drive is not showing up. How do I get it back?</summary>
+This is likely because a boot.py script is present and is hiding the CIRCUITPY drive by design (for security). To regain access:
+
+1. Enter **bootloader mode** (refer to [Development section](#development)).
+
+2. Reflash CircuitPython firmware.
+
+3. Skip copying the boot.py file until you've finalized your script.
+
+</details>
+
+<details>
+<summary>6. What’s the function of the touch sensor?</summary>
+The capacitive touch sensor is used to toggle script execution or perform specific actions depending on the active script. Its behavior is script-defined.
+</details>
+
+<details>
+<summary>7. Can I modify the T-BUG hardware?</summary>
+Absolutely. You can:
+
+- Attach extra buttons or sensors to unused GPIOs.
+- Modify the 3D printed case design.
+- Wait for the upcoming custom T-BUG PCB, which simplifies the build.
+
+</details>
+
+<details>
+<summary>8. Does T-BUG require internet to run?</summary>
+No. T-BUG runs completely offline and does not require any drivers or internet access on the host machine.
+</details>
+
+<details>
+<summary>9. Will there be firmware updates?</summary>
+Yes. New scripts, features, and functionality will be published via the [T-BUG GitHub repository](https://github.com/Nefarious-Engineering/tbug). Stay tuned!
+</details>
+
+# Learning Resources
+
+This section is intended to help beginners and intermediate users understand the core technologies used in T-BUG. Whether you're new to embedded programming, microcontrollers, or USB HID automation, the following resources will guide you through.
+
+## CircuitPython & Python Basics
+
+- 📘 [CircuitPython Official Documentation](https://docs.circuitpython.org/en/latest/README.html)
+  Reference for all built-in modules, APIs, and best practices.
+- 🚀 [Getting Started with CircuitPython](https://learn.adafruit.com/welcome-to-circuitpython)
+  Learn how to install, write, and run Python code on microcontrollers.
+- [CircuitPython Essentials Guide](https://learn.adafruit.com/circuitpython-essentials)
+  A practical set of tutorials covering built-in libraries, digital Input/Output, PWM, analog input, and more.
+- 💡 Python Programming for Beginners (W3Schools)
+  Helps non-coders understand Python basics used in scripting.
+
+## USB HID Emulation (Keyboard/Mouse Automation)
+
+- 🧰 [Adafruit HID Library Documentation](https://docs.circuitpython.org/projects/hid/en/latest/)
+  Use this to emulate keyboard presses, mouse movements, and more.
+
+- 🔑 [CircuitPython HID Examples](https://github.com/adafruit/Adafruit_CircuitPython_HID/tree/main/examples)
+  Ready-to-use scripts for automation tasks (mouse, keyboard, multimedia).
+
+## Working with the RP2040 MCU
+
+- 🔧 [Getting Started with RP2040 (CircuitPython Guide)](https://learn.adafruit.com/getting-started-with-raspberry-pi-pico-circuitpython)
+  Learn how to use the RP2040 with CircuitPython and understand its GPIOs, memory, and execution model.
+
+## Working with Capacitive Touch Sensor (TTP223)
+
+- 📗 [TTP223 Capacitive Touch Sensor Guide](https://mytectutor.com/how-to-use-ttp223-capacitive-touch-sensor-with-arduino/)
+  Understand its working principle and how to use it in electronics projects.
+
+## Adafruit Neopixel RGB LED Control
+
+- 📘 [Adafruit Neopixel Library Docs](https://docs.circuitpython.org/projects/neopixel/en/latest/)
+  Complete usage documentation for controlling WS2812/Neopixel LEDs with CircuitPython.
+
+- 🎨 [Neopixel Example Scripts](https://github.com/adafruit/Adafruit_CircuitPython_NeoPixel/tree/main/examples)
+  Examples for animations, color cycling, status indicators, and more.
+
+# Contributing
+
+We welcome community contributions to improve and expand the T-BUG project. You can help by submitting bug reports, feature requests, code improvements, documentation updates, or even new script ideas.
+
+## What You Can Contribute
+
+- 📜 New Scripts for HID payloads or automation use-cases
+
+- 🧠 Improvements to existing scripts
+
+- 🛠️ Firmware tweaks
+
+- 📝 Documentation updates or typo fixes
+
+- 🧰 Case modifications or new 3D models
+
+- 💬 Issue reports or usage feedback
+
+## How to Contribute
+
+1. Fork this repository on GitHub.
+
+2. Clone your fork:
+
+   ```
+   git clone https://github.com/your-username/tbug.git
+   ```
+
+3. Create a new branch:
+
+   ```
+   git checkout -b feature-or-fix-name
+   ```
+
+4. Make your changes and commit:
+
+   ```
+   git commit -m "Description of your change"
+   ```
+
+5. Push to your fork:
+
+   ```
+   git push origin feature-or-fix-name
+   ```
+
+6. Open a Pull Request (PR) and describe what you’ve done.
+
+## Contribution Guidelines
+
+- Follow consistent code style (PEP8 for Python).
+
+- Test your script/code before submitting.
+
+- Clearly document any changes or added features.
+
+- For hardware-related submissions (like case redesigns), include screenshots and source files.
+
+## Legal
+
+By submitting a contribution, you agree to license your work under the same license used by the T-BUG project.

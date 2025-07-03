@@ -54,7 +54,7 @@ To change the script (no coding required):
 ## Important Notes for New Users
 
 - Do not unplug T-BUG while it's running a script to avoid unexpected behavior.
-- > [!WARNING]
+  > [!WARNING]
   > Make sure to only use T-BUG on systems you own or have permission to test.
 
 # Script Descriptions
@@ -66,12 +66,13 @@ Here’s how it works:
 
 1. The capacitive touch button toggles the emulation script ON or OFF.
 2. The RGB LED provides visual feedback indicating the current stage of execution using the following color codes:
-
-   - `rgb(255,0,0)` Idle Stage (Red Colour)
-   - `rgb(0,255,0)` Mouse Movement Emulation Stage (Green Colour)
-   - `rgb(255,0,255)` Mouse Left Click Stage (Pink Colour)
-   - `rgb(255,255,0)` Shift Keystroke Stage (Yellow Colour)
-   - `rgb(255,120,0)` Caps Lock Keystroke Stage (Orange Colour)
+   | Stage | Colour |
+   | ----------- | ----------- |
+   | Idle | $${\color{red}Red}$$ |
+   | Mouse Movement Emulation | $${\color{green}Green}$$ |
+   | Mouse Left Click | $${\color{pink}Pink}$$ |
+   | Shift Keystroke | $${\color{yellow}Yellow}$$ |
+   | Caps Lock Keystroke | $${\color{orange}Orange}$$ |
 
    This allows the user to quickly identify what action is being performed just by looking at the LED.
 
@@ -103,7 +104,7 @@ By default, T-BUG is configured such that its CircuitPython flash storage (CIRCU
 
 ## Required Files
 
-Download the following files from the T-BUG [GitHub repository](https://github.com/Nefarious-Engineering/tbug):
+Download the following files from the [T-BUG GitHub repository](https://github.com/Nefarious-Engineering/tbug):
 
 1. flash_nuke.uf2 – Formats T-BUG’s internal flash storage.
 
@@ -172,7 +173,7 @@ This allows anyone to change T-BUG's behavior without needing to write or edit c
 
    - 📘 [Adafruit CircuitPython Documentation](https://docs.circuitpython.org/en/latest/README.html)
 
-   - 💡 Example scripts on the T-BUG [GitHub repository](https://github.com/Nefarious-Engineering/tbug)
+   - 💡 Example scripts on the [T-BUG GitHub repository](https://github.com/Nefarious-Engineering/tbug)
 
 ## Pin Connections
 
@@ -204,7 +205,7 @@ The T-BUG 3D printed case is designed to securely house the Waveshare RP2040-Zer
 However, a small piece of double-sided tape is recommended to securely attach the capacitive touch sensor/button module/PCB to the top part of the T-BUG case.
 
 If you plan to add additional components or sensors—such as extra buttons, displays, or external modules—you may need to redesign or modify the case to accommodate those parts.
-The STL files and editable design files for the case are available in the T-BUG [GitHub repository](https://github.com/Nefarious-Engineering/tbug), allowing you to customize the enclosure using your preferred 3D modeling software.
+The STL files and editable design files for the case are available in the [T-BUG GitHub repository](https://github.com/Nefarious-Engineering/tbug), allowing you to customize the enclosure using your preferred 3D modeling software.
 
 > The default T-BUG v1 case includes cutouts for USB access, RGB LED visibility, and to access the RESET and BOOT buttons.
 

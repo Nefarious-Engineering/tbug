@@ -1,3 +1,9 @@
+<picture>
+ <source media="(prefers-color-scheme: dark)" srcset="images/tbug_logo/T-BUG_Logo-3.png">
+ <source media="(prefers-color-scheme: light)" srcset="images/tbug_logo/T-BUG_Logo-4.png">
+ <img alt="T-BUG Logo" src="images/tbug_logo/T-BUG_Logo-4.png">
+</picture>
+
 # Table of Contents
 
 - [About T-BUG](#about-t-bug)
@@ -64,6 +70,7 @@ T-BUG is an open-source hardware and software project developed for educational,
 **_Any use of this device or its associated scripts on systems that you do not own or for which you do not have explicit permission to test, is strictly prohibited and may be illegal under local, national, or international laws._**
 
 The developers, contributors, and maintainers of this project **do not condone, support, or accept responsibility** for any malicious use or unauthorized use of this tool/device.
+
 By using this project, you agree that:
 
 - You are solely responsible for how you use the hardware and software provided.

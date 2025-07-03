@@ -23,6 +23,7 @@
   - [Pin Connections](#pin-connections)
   - [Developer Notes](#developer-notes)
 - [3D Printed Case](#3d-printed-case)
+  - [Credits & Attribution](#credits--attribution)
 - [Hardware Assembly](#hardware-assembly)
   - [Required Hardware Components](#required-hardware-components)
   - [Required Soldering Tools](#required-soldering-tools)
@@ -111,7 +112,7 @@ Here’s how it works:
 1. The capacitive touch button toggles the emulation script ON or OFF.
 2. The RGB LED provides visual feedback indicating the current stage of execution using the following color codes:
    | Stage | Colour |
-   | ----------- | ----------- |
+   | :-----------: | :-----------: |
    | Idle | $${\color{red}Red}$$ |
    | Mouse Movement Emulation | $${\color{green}Green}$$ |
    | Mouse Left Click | $${\color{pink}Pink}$$ |
@@ -263,6 +264,16 @@ The STL files and editable design files for the case are available in the [T-BUG
 
 > The default T-BUG v1 case includes cutouts for USB access, RGB LED visibility, and to access the RESET and BOOT buttons.
 
+## Credits & Attribution
+
+The T-BUG v1.0 3D printed case is a remix of two excellent community designs originally created for the Waveshare RP2040-Zero board:
+
+Original Creator 1: [DOOD Waveshare RP2040-Zero Super Slim Case](https://www.printables.com/model/281298-dood-waveshare-rp2040-zero-super-slim-case/files)
+
+Original Creator 2: [RP2040-Zero Slim Case (Closed Back Remix)](https://www.printables.com/model/957218-rp2040-zero-slim-case-closed-back-remix/files)
+
+These designs were slightly modified to make a compact, functional case suitable for the T-BUG device. We sincerely appreciate the contributions of the original designers to the open hardware community.
+
 # Hardware Assembly
 
 This section explains how to assemble your T-BUG device, including the required components and step-by-step soldering instructions.
@@ -310,7 +321,7 @@ This section explains how to assemble your T-BUG device, including the required 
 
    - Solder the wires to the through-hole pads of the TTP223 touch sensor:
      | TTP223 Pins |
-     | ----------- |
+     | :-----------: |
      | VCC |
      | I/O |
      | GND |
@@ -321,7 +332,7 @@ This section explains how to assemble your T-BUG device, including the required 
 
    - Solder the wires to the following pads on the Waveshare RP2040-Zero:
      | TTP223 Pins | RP2040-Zero Pins |
-     | ----------- | ----------- |
+     | :-----------: | :-----------: |
      | VCC | 3.3V |
      | I/O | GPIO15 |
      | GND | GND |

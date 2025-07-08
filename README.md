@@ -4,6 +4,8 @@
  <img alt="T-BUG Logo" src="images/tbug_logo/T-BUG_Logo-3.png" width="220">
 </picture>
 
+![T-BUG v1 Device](images/tbug_device/tbug_device_7_rbg.png)
+
 # Table of Contents
 
 - [About T-BUG](#about-t-bug)
@@ -277,6 +279,8 @@ This is useful if you want to connect or solder additional sensors, buttons, or 
 
 # 3D Printed Case
 
+![T-BUG 3D Printed Case](images/3d_printed_case/tbug_case_1.jpg)
+
 The T-BUG 3D printed case is designed to securely house the Waveshare RP2040-Zero board and the onboard capacitive touch sensor/button module. It is a snap-fit case, meaning no screws or glue are required to hold the RP2040-Zero board in place.
 
 However, a small piece of double-sided tape is recommended to securely attach the capacitive touch sensor/button module/PCB to the top part of the T-BUG case.
@@ -306,13 +310,19 @@ This section explains how to assemble your T-BUG device, including the required 
 
 2. TTP223 Capacitive Touch Sensor module
 
-3. 22pF, 33pF, or 47pF MLCC Capacitor (SMD 0805)
+3. 22pF, 33pF, or 47pF MLCC Capacitor (SMD 0603)
+
+![0603 SMD MLCC Capacitor](images/tbug_assembly/tbug_AS_10.jpg)
 
 4. Thin enameled copper wires – 3 pieces (for signal and power connections)
 
-5. Double-sided tape – to mount the touch sensor inside the case
+![Waveshare RP2040-Zero and TTP223 Capacitive Touch Sensor module](images/tbug_assembly/tbug_AS_19.jpg)
 
-6. 3D Printed Case (recommended) or any alternative method to secure the electronics
+5. Double-sided tape – to mount the touch sensor on the case
+
+6. Kapton/polyimide tape - to cover exposed soldered pads
+
+7. 3D Printed Case (recommended) or any alternative method to secure the electronics
 
 ## Required Soldering Tools
 
@@ -328,16 +338,27 @@ This section explains how to assemble your T-BUG device, including the required 
 
    - Roughly position the RP2040-Zero and the TTP223 module in the 3D printed case to determine exact wire length.
 
+   ![T-BUG case test fit](images/tbug_assembly/tbug_AS_23.jpg)
+
    - Cut three pieces of enameled copper wire.
+
+   ![Copper Wire](images/tbug_assembly/tbug_AS_24.jpg)
 
    - Length should be enough to reach from the RP2040-Zero board to the touch sensor position outside the case.
 
    - Remove the enamel coating from both ends using a soldering iron or fine abrasive tool.
 
-2. TTP223 Touch Sensor Sensitivity calibration
+   ![Copper Wire with removed enamel coating](images/tbug_assembly/tbug_AS_26.jpg)
 
-   - Solder a 22pF, 33pF, or 47pF MLCC capacitor (SMD 0805) onto the sensitivity adjustment pads of the TTP223 module as shown in the image.
-     > This capacitor reduces the touch sensor's sensitivity, helping prevent false triggers by limiting activation to direct contact with the sensor PCB.
+2. TTP223 Touch Sensor Sensitivity Calibration
+
+   - Solder a 22pF, 33pF, or 47pF MLCC capacitor (SMD 0603) onto the sensitivity adjustment pads of the TTP223 module as shown in the image below:
+
+   ![TTP223 Touch Sensor Module-1](images/tbug_assembly/tbug_AS_12.jpg)
+
+   ![TTP223 Touch Sensor Module-2](images/tbug_assembly/tbug_AS_13.jpg)
+
+   > This capacitor reduces the touch sensor's sensitivity, helping prevent false triggers by limiting activation to direct contact with the sensor PCB.
 
 3. Solder Wires to Touch Sensor
 
@@ -348,9 +369,41 @@ This section explains how to assemble your T-BUG device, including the required 
      | I/O |
      | GND |
 
-4. Solder Wires to RP2040-Zero Board
+   ![Soldering wires on the TTP223 Touch Sensor Module](images/tbug_assembly/tbug_AS_27.jpg)
 
-   - Pass all three wires through the RGB LED hole in the top case. This allows correct routing to the touch sensor, which will be mounted on the top half of the case.
+   ![Soldered wires on the TTP223 Touch Sensor Module](images/tbug_assembly/tbug_AS_28.jpg)
+
+4. Mount the Touch Sensor
+
+   - Cut a small piece of double-sided tape matching the size of the TTP223 touch sensor module, and stick it to the backside of the module.
+
+   ![Doube sided tape placement on TTP223 Touch Sensor Module-1](images/tbug_assembly/tbug_AS_33.jpg)
+
+   ![Doube sided tape placement on TTP223 Touch Sensor Module-2](images/tbug_assembly/tbug_AS_34.jpg)
+
+   - Peel off the protective film and mount the TTP223 module on the top half of the case (above the USB Type-C port shell).
+
+   ![TTP223 Touch Sensor Module placement on top half of the T-BUG case](images/tbug_assembly/tbug_AS_35.jpg)
+
+5. Solder Wires to RP2040-Zero Board
+
+   - Route all three wires (connected to the touch sensor) through the RGB LED cutout in the top half of the case. Then bend the wires downwards at a 90-degree angle as shown in the image below:
+
+   ![TTP223 Touch Sensor Module wire routing](images/tbug_assembly/tbug_AS_36.jpg)
+
+   - Use a multimeter to identify which wire corresponds to which pin on the TTP223 touch sensor module.
+
+   - Set the multimeter to continuity mode. Place the black probe on one of the pads of the TTP223 touch sensor module and the red probe on the exposed end of one of the copper wires to check which copper wire is connected to which pin of the TTP223 touch sensor module.
+
+   ![TTP223 Touch Sensor Module wires continuity test](images/tbug_assembly/tbug_AS_38.jpg)
+
+   - Insert each wire into its corresponding through-hole (THT) pad on the Waveshare RP2040-Zero development board.
+
+   ![Copper wire connection on the Waveshare RP2040-Zero development board-1](images/tbug_assembly/tbug_AS_41.jpg)
+
+   - Trim the excess wire extending from the THT pads.
+
+   ![Copper wire connection on the Waveshare RP2040-Zero development board-2](images/tbug_assembly/tbug_AS_44.jpg)
 
    - Solder the wires to the following pads on the Waveshare RP2040-Zero:
      | TTP223 Pins | RP2040-Zero Pins |
@@ -359,16 +412,38 @@ This section explains how to assemble your T-BUG device, including the required 
      | I/O | GPIO15 |
      | GND | GND |
 
-5. Mount the Touch Sensor
+   ![Touch sensor wires being soldered on RP2040-Zero development board](images/tbug_assembly/tbug_AS_46.jpg)
 
-   - Secure the TTP223 module to the top half of the case (over the USB Type-C Port shell) using a piece of double-sided tape.
+   ![Touch sensor wires soldered on the RP2040-Zero development board](images/tbug_assembly/tbug_AS_47.jpg)
 
-6. Final Case Assembly
+6. Initial T-BUG Testing (**_Optional but recommended_**)
+
+   - Before final assembly, test the T-BUG to verify that all components and wire connections are functioning properly.
+
+   - Upload the "User Activity Emulation" script to the T-BUG by following the steps in the [Development](#development) section of this documentation.
+
+   - Confirm the following:
+     - Touch sensor works
+     - RGB LED functions
+     - T-BUG is detected by the connected computer
+
+   ![T-BUG mid assembly process testing](images/tbug_assembly/tbug_AS_53.jpg)
+
+7. Final Case Assembly
 
    - Place the RP2040-Zero board into the bottom half of the 3D printed case.
+
+   ![RP2040-Zero board placement into the bottom half of the T-BUG case](images/tbug_assembly/tbug_AS_54.jpg)
+
    - Carefully snap the top and bottom halves together, ensuring:
-     - Wires are not pinched or strained
-     - RGB LED visibility cutout and USB port alignment are correct
+     - No wires are pinched or under tension
+     - The RGB LED window and USB port are properly aligned
+
+   ![Fully Assembled T-BUG-1](images/tbug_assembly/tbug_AS_55.jpg)
+
+   - Cut a small piece of Kapton/polyimide tape and apply it over the exposed solder pads on top of the touch sensor to prevent accidental short circuits.
+
+   ![Fully Assembled T-BUG-2](images/tbug_assembly/tbug_AS_60.jpg)
 
 ## Coming Soon: Custom T-BUG PCB
 
@@ -517,25 +592,25 @@ We welcome community contributions to improve and expand the T-BUG project. You 
 
 2. Clone your fork:
 
-   ```
+   ```bash
    git clone https://github.com/your-username/tbug.git
    ```
 
 3. Create a new branch:
 
-   ```
+   ```bash
    git checkout -b feature-or-fix-name
    ```
 
 4. Make your changes and commit:
 
-   ```
+   ```bash
    git commit -m "Description of your change"
    ```
 
 5. Push to your fork:
 
-   ```
+   ```bash
    git push origin feature-or-fix-name
    ```
 

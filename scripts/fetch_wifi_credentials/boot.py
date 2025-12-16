@@ -1,4 +1,3 @@
-import storage
 import usb_cdc
 import usb_hid
 

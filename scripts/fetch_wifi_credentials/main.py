@@ -47,16 +47,16 @@ set_state_from_string(persisted)
 
 # Set initial LED color based on state
 if state == WAITING:
-    led_color(255, 255, 0)  # Yellow
+    led_color(128, 128, 0)  # Yellow
     print("Resuming in WAITING state")
 else:
-    led_color(255, 0, 0)    # Red
+    led_color(128, 0, 0)    # Red
     print("Starting in IDLE state")
 
 def extract_phase():
     global state
     print("Touch detected. Starting extraction...")
-    led_color(0, 0, 255)  # Blue
+    led_color(0, 0, 128)  # Blue
     
     # Open PowerShell
     keyboard.press(Keycode.WINDOWS, Keycode.R)
@@ -85,7 +85,7 @@ def extract_phase():
 
     time.sleep(1)
 
-    led_color(255, 255, 0)  # Yellow
+    led_color(128, 128, 0)  # Yellow
     print("Extraction complete. Touch again for output.")
 
 def read_wifi_dump():
@@ -128,7 +128,7 @@ def persist_state_ps(new_state):
 def output_phase():
     global state
     print("Displaying output...")
-    led_color(0, 255, 0)  # Green
+    led_color(0, 128, 0)  # Green
     
     wifi_data = read_wifi_dump()
 
@@ -140,7 +140,7 @@ def output_phase():
         # Save state in persistent storage
         persist_state_ps("IDLE")
 
-        led_color(255, 0, 0)  # Red
+        led_color(128, 0, 0)  # Red
         print("State reset to IDLE. Ready for new extraction cycle.")
         return
 
@@ -206,7 +206,7 @@ def output_phase():
 
     time.sleep(1)
 
-    led_color(255, 0, 0)  # Red
+    led_color(128, 0, 0)  # Red
     print("Output created. Ready for new extraction cycle.")
 
 # ---- WAIT FOR TOUCH SENSOR TO STABILIZE ----

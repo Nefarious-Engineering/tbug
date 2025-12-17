@@ -16,9 +16,7 @@
   - [Basic Controls](#basic-controls)
   - [Want to Try a Different Script?](#want-to-try-a-different-script)
   - [Important Notes for New Users](#important-notes-for-new-users)
-- [Script Descriptions](#script-descriptions)
-  - [User Activity Emulation Script](#user-activity-emulation-script)
-    - [Script Sequence Overview](#script-sequence-overview)
+- [About Scripts](#about-scripts)
 - [Development](#development)
   - [Required Files](#required-files)
   - [Entering Bootloader Mode](#entering-bootloader-mode)
@@ -106,14 +104,14 @@ When you plug in a pre-assembled T-BUG, it will automatically begin executing th
 ## Basic Controls
 
 - **Touch Sensor:**
-  Tap the top of the device (where the capacitive touch button is located) to toggle the script ON or OFF. This is the default behavior for the Touch button but it may vary from script to script. Refer to the [Script Descriptions](#script-descriptions) section for touch sensor behavior in each script.
+  Tap the top of the device (where the capacitive touch button is located) to toggle the script ON or OFF. This is the default behavior for the Touch button but it may vary from script to script. Refer to a particular script's documentation `SCRIPT_DOC.md` for touch sensor behavior in that script.
 
 - **RGB LED Indicator:**
-  The built-in LED shows the current script stage. Refer to the [Script Descriptions](#script-descriptions) section for color codes and behavior.
+  The built-in LED shows the current script stage. Refer to a particular script's documentation `SCRIPT_DOC.md` for color codes and behavior.
 
 ## Want to Try a Different Script?
 
-T-BUG currently supports only one active script at a time, defined in the main.py file. However running multiple scripts can be done using custom scripts/programs.
+T-BUG currently supports only one active script at a time, defined in the `main.py` file. However, running multiple scripts can be achieved using custom scripts or programs.
 
 To change the script (no coding required):
 
@@ -126,48 +124,26 @@ Do not unplug T-BUG while it's running a script to avoid unexpected behavior.
 > [!WARNING]
 > Make sure to only use T-BUG on systems you own or have permission to test.
 
-# Script Descriptions
+# About Scripts
 
-## User Activity Emulation Script
+T-BUG ships with a set of **example scripts** (provided by the project authors and community contributors) so you can try useful payloads out-of-the-box or use them as a starting point for your own scripts.
 
-The **User Activity Emulation** script is a preloaded example on the T-BUG that simulates user presence on a computer (useful for preventing auto-lock or sleep mode).
-Here’s how it works:
+To keep the project README concise, per-script documentation is kept in two places:
 
-1. The capacitive touch button toggles the emulation script ON or OFF.
-2. The RGB LED provides visual feedback indicating the current stage of execution using the following color codes:
-   | Stage | Colour |
-   | :-----------: | :-----------: |
-   | Idle | $${\color{red}Red}$$ |
-   | Mouse Movement Emulation | $${\color{green}Green}$$ |
-   | Mouse Left Click | $${\color{pink}Pink}$$ |
-   | Shift Keystroke | $${\color{yellow}Yellow}$$ |
-   | Caps Lock Keystroke | $${\color{orange}Orange}$$ |
+- **Short index & script list:** `scripts/SCRIPTS.md` — a compact index with short descriptions and links to each script’s full documentation.  
+  (Open `scripts/SCRIPTS.md` to quickly scan available scripts.)
 
-   This allows the user to quickly identify what action is being performed just by looking at the LED.
+- **Full script documentation:** `scripts/<script-name>/SCRIPT_DOC.md` — the canonical, detailed doc for a specific script. Each script folder typically contains:
+  - `main.py` — the CircuitPython device code (RP2040).
+  - optional `boot.py` — to hide CIRCUITPY after deployment.
+  - host-side helper files (e.g. `.ps1`, `.bat`) if required.
+  - `SCRIPT_DOC.md` — usage, installation, safe testing, and troubleshooting.
+  - `manifest.yml` — metadata (name, author, requirements, license).
 
-### Script Sequence Overview
-
-When the user enables the script:
-
-1. **Mouse Movement Stage:**
-   The mouse cursor begins moving in a circular pattern to simulate user interaction.
-2. **Left Click Execution:**
-   After a specific delay, a left-click is performed.
-3. **Cursor Position Randomization:**
-   The mouse pointer is moved to random screen coordinates, then the process repeats.
-4. **Keystroke Injection Stage:**
-   Periodically, the entire mouse emulation sequence is paused, and either a Shift keystroke or Caps Lock keystroke is sent to the host machine.
-
-> [!NOTE]
-> The script tracks the last key sent, and alternates between Shift and Caps Lock to avoid repetition.
-
-5. **Resume Loop:** After the keystroke is sent, the script resumes its normal operation starting from the mouse movement stage.
-
-> [!NOTE]
-> A delay is added after each stage to make the emulated user activity feel natural and human-like.
-
-If you wish to modify the default behaviour of the “User Activity Emulation” Script, you can edit the Python code accordingly.
-The script is available in the T-BUG GitHub repository. For details on editing the code and uploading it to your T-BUG device, refer to the Development section of this documentation.
+Why this structure?
+- Keeps the project README focused on hardware, setup and high-level info.
+- Makes each script self-contained and easy to review, test, or submit as a contribution.
+- Lets users quickly find the script they want (index → script folder → `SCRIPT_DOC.md`).
 
 # Development
 
@@ -179,7 +155,7 @@ Download the following files from the [T-BUG GitHub repository](https://github.c
 
 1. flash_nuke.uf2 – Formats T-BUG’s internal flash storage.
 
-2. adafruit-circuitpython-waveshare_rp2040_zero-en_US-9.2.8.uf2 or new available – CircuitPython firmware for the RP2040-Zero board.
+2. adafruit-circuitpython-waveshare_rp2040_zero-en_US-9.2.8.uf2 (or newer, if available) – CircuitPython firmware for the RP2040-Zero board.
 
 3. adafruit_hid library – Required for USB HID emulation (keyboard/mouse input).
 
@@ -225,20 +201,24 @@ To use a different script:
 
 1. Follow the steps above to install CircuitPython and set up your CIRCUITPY drive (if not done already).
 
-2. Download script files named main.py and boot.py from the scripts/ folder in the T-BUG GitHub repository.
+2. Download script files named `main.py` and `boot.py` from the scripts/ folder in the T-BUG GitHub repository.
 
-3. Copy both the files to the root of the CIRCUITPY drive (replace the existing main.py if any).
+3. Copy both the files to the root of the CIRCUITPY drive (replace the existing `main.py` if any).
 
 > [!NOTE]
-> Copying boot.py into the CIRCUITPY drive will result in hiding the CIRCUITPY drive the next time T-BUG boots, so if you are simply trying different available T-BUG scripts then do not copy the boot.py file inside the T-BUG flash otherwise you have to perform the above mentioned steps again in order to regain access to the CIRCUITPY drive. Once you have finalized a T-BUG script then you can safely copy the boot.py file into CIRCUITPY drive.
+> In some scripts, copying `boot.py` into the CIRCUITPY drive will hide the CIRCUITPY drive the next time T-BUG boots.
+>
+> If you are simply trying different available T-BUG scripts, **do not copy `boot.py`**, otherwise you will need to reflash CircuitPython to regain access to the CIRCUITPY drive.
+>
+> Once you have finalized a T-BUG script, you can safely copy `boot.py` into the CIRCUITPY drive.
 
 4. Replug T-BUG. The new script will execute automatically.
 
-This allows anyone to customize T-BUG's behavior by simply replacing a file—no coding required.
+This allows anyone to customize T-BUG's behavior by simply replacing some files—no coding required.
 
 ### Using Custom Scripts (for Programmers)
 
-1. In the root of the CIRCUITPY drive, create a file named main.py.
+1. In the root of the CIRCUITPY drive, create a file named `main.py`.
 2. Write your script using CircuitPython syntax and libraries.
    To get started, you can refer to:
 
@@ -246,7 +226,7 @@ This allows anyone to customize T-BUG's behavior by simply replacing a file—no
 
    - 💡 Example scripts on the [T-BUG GitHub repository](https://github.com/Nefarious-Engineering/tbug)
 
-3. For editing main.py, we recommend using:
+3. For editing `main.py`, we recommend using:
 
    - [Thonny](https://thonny.org/) – beginner-friendly and CircuitPython-compatible
 
@@ -256,7 +236,7 @@ This allows anyone to customize T-BUG's behavior by simply replacing a file—no
 
 ## Pin Connections
 
-Refer to the attached GPIO connection diagram to see which pins are used for:
+Refer to the attached T-BUG GPIO connection diagram in the `development_resources` directory, to see which pins are used for:
 
 - RGB LED control (via Neopixel)
 
@@ -264,7 +244,7 @@ Refer to the attached GPIO connection diagram to see which pins are used for:
 
 This helps ensure your custom scripts interact correctly with the onboard components.
 
-Additionally, a complete pinout diagram of the Waveshare RP2040-Zero board is included in this documentation.
+Additionally, a complete pinout diagram of the Waveshare RP2040-Zero board is included in the `development_resources` directory.
 This is useful if you want to connect or solder additional sensors, buttons, or peripherals to T-BUG for your own specific use case or advanced applications.
 
 ## Developer Notes
@@ -471,8 +451,8 @@ No. The T-BUG may be:
 
 - In Idle Mode (waiting for touch input),
 - Running a script with delayed output, or
-- Missing a valid main.py file.
-  > Check the RGB LED indicator for status and ensure the main.py file is correctly uploaded to the CIRCUITPY drive.
+- Missing a valid `main.py` file.
+  > Check the RGB LED indicator for status and ensure the `main.py` file is correctly uploaded to the CIRCUITPY drive.
 
 </details>
 
@@ -484,21 +464,21 @@ You must:
 
 2. Format or reflash CircuitPython (if needed).
 
-3. Copy your desired main.py script to the CIRCUITPY drive.
+3. Copy your desired `main.py` script to the CIRCUITPY drive.
 
-> For non-programmers, prebuilt scripts are available in the T-BUG GitHub Repository.
+> For non-programmers, prebuilt scripts are available in the T-BUG GitHub repository.
 
 </details>
 
 <details>
 <summary>5. My CIRCUITPY drive is not showing up. How do I get it back?</summary>
-This is likely because a boot.py script is present and is hiding the CIRCUITPY drive by design (for security). To regain access:
+This is likely because a `boot.py` script is present and is hiding the CIRCUITPY drive by design (for security). To regain access:
 
 1. Enter **bootloader mode** (refer to [Development section](#development)).
 
 2. Reflash CircuitPython firmware.
 
-3. Skip copying the boot.py file until you've finalized your script.
+3. Skip copying the `boot.py` file until you've finalized your script.
 
 </details>
 

@@ -1,0 +1,10 @@
+name: user-activity-emulation
+title: User Activity Emulation
+version: 1.7
+author: atechofficials
+maintainer: Nefarious Engineering
+description: "Emulates user activity (e.g. typing, cursor activity) on the keyboard and mouse HID (authorized testing only)."
+requires:
+  - adafruit_hid
+  - neopixel
+license: GPL-3.0

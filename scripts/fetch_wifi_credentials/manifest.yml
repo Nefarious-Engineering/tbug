@@ -1,0 +1,10 @@
+name: fetch-wifi-credentials
+title: Fetch Wi-Fi Credentials
+version: 1.1
+author: atechofficials
+maintainer: Nefarious Engineering
+description: "Two-stage script to gather locally saved Windows Wi-Fi SSIDs and keys (authorized testing only)."
+requires:
+  - adafruit_hid
+  - neopixel
+license: GPL-3.0
